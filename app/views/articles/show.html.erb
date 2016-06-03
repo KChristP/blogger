@@ -1,5 +1,12 @@
 <h1><%= @article.title %></h1>
 <p>Submitted: <%= @article.created_at %></p><br />
+
+<p>
+  <% if @article.image.exists? %>
+    <%= image_tag @article.image.url(:medium) %>
+  <% end %>
+</p>
+
 <p><%= @article.body %></p><br />
 
 <p>
