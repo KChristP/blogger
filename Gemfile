@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+#keenan added for atuthentication service
+gem 'sorcery'
 #Keenan added paperclip here to manage attachments and uploading
 gem "paperclip"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
