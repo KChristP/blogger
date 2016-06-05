@@ -1,5 +1,7 @@
 class ArticlesController < ApplicationController
   include ArticlesHelper#added here so that in the create function we could use the article_params function which lets us pass the :article hash directly in to Article.new
+  before_filter :require_login, only: [:new, :create, :edit, :update, :destroy]
+
 
   def index
     @articles = Article.all
