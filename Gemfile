@@ -1,7 +1,9 @@
 source 'https://rubygems.org'
 
+#keenan added sorcery to deal with authentication
+gem 'sorcery'
 #Keenan added paperclip here to manage attachments and uploading
-gem "paperclip"
+gem 'paperclip'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
 # Use sqlite3 as the database for Active Record
