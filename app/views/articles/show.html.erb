@@ -1,5 +1,6 @@
 <h1><%= @article.title %></h1>
 <p>Submitted: <%= @article.created_at %></p><br />
+<p>By: <%= @article.author_id != nil ? Author.find(@article.author_id).username : "unknown"  %></p><br />
 
 <p>
   <% if @article.image.exists? %>

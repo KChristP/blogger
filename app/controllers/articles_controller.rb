@@ -1,7 +1,22 @@
 class ArticlesController < ApplicationController
   include ArticlesHelper#added here so that in the create function we could use the article_params function which lets us pass the :article hash directly in to Article.new
   before_filter :require_login, only: [:new, :create, :edit, :update, :destroy]
+  before_filter :require_original_author, only: [:edit, :update, :destroy]
 
+  def require_original_author
+    @article = Article.find(params[:id])
+    if @article.author_id != nil
+      unless current_user == Author.find(@article.author_id)
+        redirect_to root_path
+        return false
+      end
+    else
+      unless current_user == Author.first
+        redirect_to root_path
+        return false
+      end
+    end
+  end
 
   def index
     @articles = Article.all
@@ -19,6 +34,8 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
+    @author = current_user
+    @article.author_id = @author.id#############################################################
     @article.save
 
     flash.notice = "Article '#{@article.title}' Created!"
